@@ -1,1 +1,17 @@
 /* Seus estilos globais vão aqui */
+.hero-section {
+    background: url("../images/hero-img.jpg") 50% no-repeat;
+    background-size: cover;
+    height: 90vh;
+    width:auto;
+    text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }

@@ -8,9 +8,14 @@ import ProtectedRoute from "../pages/auth/ProtectedRoute";
 
 import { AuthContextComponent } from "../contexts/authContext";
 
+// imports
+import Navbar from "./Navbar";
+import { Nav } from "react-bootstrap";
+
 function App() {
   return (
     <AuthContextComponent>
+    <Navbar />
       <Routes>
         <Route path="/" element={<ProtectedRoute component={Home} />} />
         <Route path="/signup" element={<Signup />} />
@@ -56,4 +61,3 @@ export default App;
 
 
 
-// teste
