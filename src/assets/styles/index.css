@@ -1,8 +1,8 @@
 /* Seus estilos globais vão aqui */
 .hero-section {
-    background: url("../images/hero-img.jpg") 50% no-repeat;
+    background: url("../images/hero-img.jpg") 100% no-repeat;
     background-size: cover;
-    height: 90vh;
+    height: 100vh;
     width:auto;
     text-align: center;
     display: -webkit-flex;
