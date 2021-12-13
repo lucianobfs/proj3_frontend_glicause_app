@@ -15,3 +15,12 @@
         -ms-flex-pack: center;
             justify-content: center;
   }
+  
+.accordion-detail {
+    height: 100%;  
+    width: 60px; 
+    border: none; 
+    border-radius: 50%;
+    font-size: 2em;
+    position: relative;
+}
