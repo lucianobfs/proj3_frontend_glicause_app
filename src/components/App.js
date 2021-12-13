@@ -8,6 +8,7 @@ import ProtectedRoute from "../pages/auth/ProtectedRoute";
 import AddGlucose from "../pages/AddGlucose";
 import EditGlucose from "../pages/EditGlucose";
 import Blog from "../pages/Blog";
+import PostDetails from "../pages/PostDetails";
 
 import { AuthContextComponent } from "../contexts/authContext";
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/AddGlucose" element={<ProtectedRoute component={AddGlucose} />} />
         <Route path="/EditGlucose/:id" element={<ProtectedRoute component={EditGlucose} />} />
         <Route path="/blog" element={<ProtectedRoute component={Blog} />} />
+        <Route path="/:id" element={<ProtectedRoute component={PostDetails} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>

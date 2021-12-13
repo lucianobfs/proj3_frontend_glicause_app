@@ -12,6 +12,8 @@ import { AuthContext } from "../../contexts/authContext";
 function Login(props) {
   const authContext = useContext(AuthContext);
 
+  const { loggedInUser } = useContext(AuthContext);
+
   const [state, setState] = useState({ password: "", email: "" });
   const [errors, setErrors] = useState({
     email: null,
@@ -40,7 +42,16 @@ function Login(props) {
         JSON.stringify({ ...response.data })
       );
       setErrors({ password: "", email: "" });
-      navigate("/");
+      // navigate("/");
+
+      console.log(response.data.user.role)
+      if (response.data.user.role === "ADMIN") {
+        navigate("/blog")
+      } else {
+        navigate("/");
+      }
+      
+
     } catch (err) {
       console.error(err.response);
       setErrors({ ...err.response.data.errors });
@@ -69,7 +80,7 @@ function Login(props) {
               <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
             </div>
 
-            <div className="col-md-10 mx-auto col-lg-5">
+{loggedInUser.user._id ? null :             <div className="col-md-10 mx-auto col-lg-5">
               <form onSubmit={handleSubmit} className=" p-4 p-md-5">
 
                 <div className="form-floating mb-3">
@@ -107,13 +118,13 @@ function Login(props) {
                   </div>
                 </div>
               </form>
-            </div>
+            </div>}
           </div>
         </div>
       </div>
       <div className="container col-md-3 justify-content-end">
-        <Accordion defaultActiveKey="0">
-          <Accordion.Item eventKey="0">
+        <Accordion defaultActiveKey="-1">
+          <Accordion.Item eventKey="0" className="border-0">
             <Accordion.Header>Accordion Item #1</Accordion.Header>
             <div className="">
             <Accordion.Body>
@@ -127,7 +138,7 @@ function Login(props) {
             </Accordion.Body>
             </div>
           </Accordion.Item>
-          <Accordion.Item eventKey="1">
+          <Accordion.Item eventKey="1" className="border-0">
             <Accordion.Header>Accordion Item #2</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -139,7 +150,7 @@ function Login(props) {
               est laborum.
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="2">
+          <Accordion.Item eventKey="2" className="border-0">
             <Accordion.Header>Accordion Item #3</Accordion.Header>
             <Accordion.Body>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
