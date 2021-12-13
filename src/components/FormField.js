@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 function FormField(props) {
   return (
     <div>
-      <label htmlFor={props.id} className="form-label">
+      <label htmlFor={props.id} className="form-label text-dark">
         {props.label}
       </label>
       <input

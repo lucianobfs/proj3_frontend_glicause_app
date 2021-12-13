@@ -10,7 +10,12 @@ import EditGlucose from "../pages/EditGlucose";
 import Blog from "../pages/Blog";
 import PostDetails from "../pages/PostDetails";
 
+import PostDelete from "../pages/PostDelete";
+
+import GlucoseDetails from "../pages/GlucoseDetails";
+
 import { AuthContextComponent } from "../contexts/authContext";
+import GlucoseDelete from "../pages/GlucoseDelete";
 
 // imports
 import Navbar from "./Navbar";
@@ -25,7 +30,10 @@ function App() {
         <Route path="/AddGlucose" element={<ProtectedRoute component={AddGlucose} />} />
         <Route path="/EditGlucose/:id" element={<ProtectedRoute component={EditGlucose} />} />
         <Route path="/blog" element={<ProtectedRoute component={Blog} />} />
-        <Route path="/:id" element={<ProtectedRoute component={PostDetails} />} />
+        <Route path="/blog/:id" element={<ProtectedRoute component={PostDetails} />} />
+        <Route path="/delete/:id" element={<ProtectedRoute component={PostDelete} />} />
+        <Route path="/glucose/:id" element={<ProtectedRoute component={GlucoseDetails} />} />
+        <Route path="/glucose/delete/:id" element={<ProtectedRoute component={GlucoseDelete} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>

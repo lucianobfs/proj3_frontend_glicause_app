@@ -90,7 +90,7 @@ function Login(props) {
             </div>
 
 {loggedInUser.user._id ? null :             <div className="col-md-10 mx-auto col-lg-5">
-              <form onSubmit={handleSubmit} className=" p-4 p-md-5">
+              <form onSubmit={handleSubmit} className="p-4 p-md-5 rounded" style={{backgroundColor: "white"}}>
 
                 <div className="form-floating mb-3">
 
@@ -255,7 +255,7 @@ function Login(props) {
 
       <div className="">
         <iframe
-          className="container-fluid"
+          className="container-fluid h-80"
           width="auto"
           height="70%"
           frameborder="0"

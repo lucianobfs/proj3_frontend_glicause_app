@@ -10,6 +10,8 @@ import { NavItem } from "react-bootstrap";
 
 import { AuthContext } from "../contexts/authContext";
 
+import ConfirmationModal from "../components/ConfirmationModal";
+
 function PostDetails() {
   const { loggedInUser } = useContext(AuthContext);
 
@@ -17,6 +19,8 @@ function PostDetails() {
   const navigate = useNavigate();
 
   const [post, setPost] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
 
   const [loading, setLoading] = useState(true);
 
@@ -26,7 +30,7 @@ function PostDetails() {
         const response = await api.get(`/blog/${id}`);
 
         setPost(response.data);
-        console.log(loggedInUser.user.role)
+        console.log(loggedInUser.user.role);
 
         setLoading(false);
       } catch (err) {
@@ -78,11 +82,34 @@ function PostDetails() {
               </p>
             </div>
 
-            {loggedInUser.user.role === "ADMIN" ? <div>
-            <button type="button" className="btn btn-secondary me-1">Edit Post</button>
-            <button type="button" className="btn btn-danger">Delete</button>
-            </div> : null}
+            {loggedInUser.user.role === "ADMIN" ? (
+              <div>
+                <button type="button" className="btn btn-secondary me-1">
+                  Edit Post
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => setShowModal(true)}
+                >
+                  Delete
+                </button>
+              </div>
+            ) : null}
 
+            <ConfirmationModal
+              title="Tem certeza?"
+              variant="danger"
+              confirmationText="Deletar"
+              show={showModal}
+              handleClose={() => setShowModal(false)}
+              handleConfirmation={() => {
+                navigate(`delete/${id}`);
+                setShowModal(false);
+              }}
+            >
+              Essa ação é irreversível
+            </ConfirmationModal>
           </div>
 
           <div className="col-md-9 mt-5">{post.body}</div>

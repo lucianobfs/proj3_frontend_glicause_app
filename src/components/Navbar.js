@@ -36,16 +36,18 @@ function Navbar() {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? "active" : ""}`
-                  }
-                  to="/"
-                >
-                  User Area
-                </NavLink>
-              </li>
+              {loggedInUser.user.role === "USER" ? (
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                    to="/"
+                  >
+                    User Area
+                  </NavLink>
+                </li>
+              ) : null}
 
               <li className="nav-item">
                 <NavLink
@@ -70,38 +72,19 @@ function Navbar() {
                   Home
                 </NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink
-                  className={({ isActive }) =>
-                    `nav-link ${isActive ? "active" : ""}`
-                  }
-                  to="/blog"
-                >
-                  Blog
-                </NavLink>
-              </li>
             </ul>
           )}
         </div>
         <div>
           {loggedInUser.user._id ? (
             <>
-              <span>Bem-vindo, {loggedInUser.user.name}</span>
+              <span>Welcome, {loggedInUser.user.name}</span>
 
-              <button onClick={logout} className="btn btn-link">
-                Sair
+              <button onClick={logout} className="btn btn-light ms-3">
+                Logout
               </button>
             </>
-          ) : (
-            <NavLink
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              to="/login"
-            >
-              Entrar
-            </NavLink>
-          )}
+          ) : null}
         </div>
       </div>
     </nav>
@@ -109,3 +92,10 @@ function Navbar() {
 }
 
 export default Navbar;
+
+{/* <NavLink
+  className={({ isActive }) => `nav-link  ${isActive ? "active" : ""}`}
+  to="/login"
+>
+  Login
+</NavLink>; */}

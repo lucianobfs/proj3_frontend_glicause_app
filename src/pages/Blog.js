@@ -30,7 +30,7 @@ function Blog() {
     <div className="container container-fluid">
       {postList.map((item) => {
         return (
-          <Link to={`/${item._id}`} className="text-decoration-none text-dark">
+          <Link to={`/blog/${item._id}`} className="text-decoration-none text-dark">
             <div className="card mb-3">
               <img src={item.image} className="card-img-top img-fluid mh-100 " alt="..."  style={{width: "1300px"}} />
               <div className="card-body">
