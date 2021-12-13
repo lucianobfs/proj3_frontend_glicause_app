@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import hero from "../assets/images/hero-img.jpg";
 import Button from "@restart/ui/esm/Button";
 import api from "../apis/api";
+import Graph from "../components/Graph";
 
 function Home() {
   const [glucoseList, setGlucoseList] = useState([]);
@@ -46,6 +47,8 @@ function Home() {
         </div>
       </div>
 
+      <Graph />
+
       <div className="container container-fluid">
         <Link to="/AddGlucose">
           <Button className="btn btn-primary ms-2 mb-4 mt-4">
@@ -58,7 +61,7 @@ function Home() {
         {glucoseList
           .map((item) => {
             return (
-              <div className="card text-center mb-4">
+              <div className="card text-center mb-4" key={item._id}>
                 <div className="card-header">Glucose Register</div>
                 <Link
                   to={`/glucose/${item._id}`}

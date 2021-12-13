@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../apis/api";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
@@ -84,9 +85,11 @@ function PostDetails() {
 
             {loggedInUser.user.role === "ADMIN" ? (
               <div>
+              <Link to={`/EditPost/${post._id}`}>
                 <button type="button" className="btn btn-secondary me-1">
                   Edit Post
                 </button>
+                </Link>
                 <button
                   type="button"
                   className="btn btn-danger"
@@ -104,7 +107,7 @@ function PostDetails() {
               show={showModal}
               handleClose={() => setShowModal(false)}
               handleConfirmation={() => {
-                navigate(`delete/${id}`);
+                navigate(`/post/delete/${id}`);
                 setShowModal(false);
               }}
             >
