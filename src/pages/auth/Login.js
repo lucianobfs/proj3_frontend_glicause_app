@@ -1,7 +1,8 @@
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
-import "../../assets/styles/index.css"
-import hero from "../../assets/images/hero-img.jpg"
+import "../../assets/styles/index.css";
+import hero from "../../assets/images/hero-img.jpg";
+import location from "../../assets/images/stock.png";
 
 import React, { useState, useContext } from "react";
 import Draggable from "react-draggable";
@@ -14,9 +15,9 @@ import VisibilitySensor from "react-visibility-sensor";
 import { FaBookMedical } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
 import { FaFileMedicalAlt } from "react-icons/fa";
-import { FaFacebookSquare } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import { FaTwitterSquare } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -59,7 +60,7 @@ function Login(props) {
       } else {
         navigate("/");
       }
-      
+
 
     } catch (err) {
       console.error(err.response);
@@ -89,8 +90,8 @@ function Login(props) {
               <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
             </div>
 
-{loggedInUser.user._id ? null :             <div className="col-md-10 mx-auto col-lg-5">
-              <form onSubmit={handleSubmit} className="p-4 p-md-5 rounded" style={{backgroundColor: "white"}}>
+            {loggedInUser.user._id ? null : <div className="col-md-10 mx-auto col-lg-5">
+              <form onSubmit={handleSubmit} className="p-4 p-md-5 rounded" style={{ backgroundColor: "white" }}>
 
                 <div className="form-floating mb-3">
 
@@ -140,9 +141,10 @@ function Login(props) {
           </div>
 
           <div className="col-md-10 mx-auto col-lg-5 mt-5 pt-5">
-            <Accordion defaultActiveKey="">
-              <Accordion.Item eventKey="0">
-                <Accordion.Header>Accordion Item #1</Accordion.Header>
+            <Accordion defaultActiveKey="" >
+              <Accordion.Item eventKey="0" className="noselect" style={{ border: "none" }}>
+                <Accordion.Header><div className="btn btn-secondary accordion-detail">1</div> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step One 1#</h2>
+                </Accordion.Header>
                 <div className="">
                   <Accordion.Body>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -155,8 +157,8 @@ function Login(props) {
                   </Accordion.Body>
                 </div>
               </Accordion.Item>
-              <Accordion.Item eventKey="1">
-                <Accordion.Header>Accordion Item #2</Accordion.Header>
+              <Accordion.Item eventKey="1" style={{ border: "none" }}>
+                <Accordion.Header><div className="btn btn-secondary accordion-detail text-center align-top">2</div> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Two 2#</h2></Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -167,8 +169,8 @@ function Login(props) {
                   est laborum.
                 </Accordion.Body>
               </Accordion.Item>
-              <Accordion.Item eventKey="2">
-                <Accordion.Header>Accordion Item #3</Accordion.Header>
+              <Accordion.Item eventKey="2" style={{ border: "none" }}>
+                <Accordion.Header><div className="btn btn-secondary accordion-detail">3</div> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Three 3#</h2></Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -254,46 +256,59 @@ function Login(props) {
       </div>
 
       <div className="">
-        <iframe
-          className="container-fluid h-80"
-          width="auto"
-          height="70%"
-          frameborder="0"
-          scrolling="no"
-          marginheight="0"
-          marginwidth="0"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=-118.51248264312746%2C34.00807780839357%2C-118.47664833068849%2C34.024334049434735&amp;layer=mapnik&amp;marker=34.016206318030996%2C-118.49456548690796"
-          style={{ position: "absolute" }}
-        ></iframe>
+        <div
+          className="hero-image d-flex align-items-center justify-content-center"
+          style={{
+            backgroundImage: `url(${location})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            position: "relative",
+            height: "calc(60vh - 56px)",
+          }}
+        >
 
-        <Draggable defaultPosition={{ x: 0, y: 0 }}>
-          <div className="card col-sm-2" style={{ position: "relative", top: '100px', left: '100px' }}>
-            <div className="card-body">
-              <h5 className="card-title">Get in touch with us!</h5>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6 my-3">
+                <h2>5th Avenue, New York <br /> USA 10255</h2>
+              </div>
+              <div className="col-md-6 text-lg-end my-3">
+                <h2>+55 (11) 4002 8922</h2>
+              </div>
+              <hr />
+            </div>
 
-              <p className="card-text">We're settled in 712 Lincoln Blvd, Venice, CA 90291, United States.</p>
-
-              <h5>Our socials</h5>
-              <a href="https://facebook.com" target="_blank" className="text-decoration-none text-dark margin-right-5">
-                <FaFacebookSquare color="#0A83ED" size="25px" />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                className="text-decoration-none text-dark mx-2"
-              >
-                <FaInstagram color="#C32AA3" size="25px" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                className="text-decoration-none text-dark ml-2"
-              >
-                <FaTwitterSquare color="#00ACEE" size="25px" />
-              </a>
+            <div className="row">
+              <div className="col-md-6 text-lg-end my-3">
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  className="text-decoration-none text-dark mx-2"
+                >
+                  <FaFacebookF color="#0A83ED" size="35px" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  className="text-decoration-none text-dark mx-2"
+                >
+                  <FaInstagram color="#C32AA3" size="35px" />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  className="text-decoration-none text-dark mx-2"
+                >
+                  <FaTwitter color="#00ACEE" size="35px" />
+                </a>
+              </div>
+              <div className="col-md-6 my-3">
+                <p>Copyrights © 2021</p>
+              </div>
             </div>
           </div>
-        </Draggable>
+
+        </div>
       </div>
     </>
   );
