@@ -27,23 +27,31 @@ function Blog() {
   console.log(postList);
 
   return (
-    <div className="row row-cols-1 row-cols-md-2 g-4 container-fluid">
+    <div className="container container-fluid">
       {postList.map((item) => {
         return (
-          <div className="col ">
-            <Link to={`/${item._id}`} className="text-decoration-none text-dark">
-              <div className="card text-center">
-                <img src={item.image} className="card-img-top" alt="..." />
-                <div className="card-body">
-                  <h3 className="card-title">{item.title}</h3>
-                  <p className="card-text">{item.body}</p>
-                </div>
-                <div className="card-footer">
-                  <small className="text-muted">{item.date.split("T")[0]}</small>
-                </div>
+          <Link to={`/blog/${item._id}`} className="text-decoration-none text-dark">
+            <div className="card mb-3">
+              <img src={item.image} className="card-img-top img-fluid mh-100 " alt="..."  style={{width: "1300px"}} />
+              <div className="card-body">
+                <h1 className="card-title text-center">{item.title}</h1>
+                <p className="card-text">{item.body}</p>
+                <p className="card-text">
+                  <Link
+                    to={`/${item._id}`}
+                    className="text-decoration-none text-dark"
+                  >
+                    <small className="text-muted">Read More</small>
+                  </Link>
+                </p>
               </div>
-            </Link>
-          </div>
+              <div className="card-footer">
+                  <small className="text-muted">
+                    {item.date.split("T")[0]}
+                  </small>
+                </div>
+            </div>
+          </Link>
         );
       })}
     </div>
@@ -53,33 +61,20 @@ function Blog() {
 export default Blog;
 
 {
-  /* <div class="card">
-<img src="..." class="card-img-top" alt="..." />
-<div class="card-body">
-  <h5 class="card-title">Card title</h5>
-  <p class="card-text">
-    This is a longer card with supporting text below as a natural
-    lead-in to additional content. This content is a little bit
-    longer.
-  </p>
-</div>
-</div> */
-}
-
-{
-  /* <div class="row row-cols-1 row-cols-md-2 g-4">
-<div class="col">
-  <div class="card">
-    <img src="..." class="card-img-top" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">
-        This is a longer card with supporting text below as a natural
-        lead-in to additional content. This content is a little bit
-        longer.
-      </p>
+  /* <Link to={`/${item._id}`} className="text-decoration-none text-dark">
+<div className="align-items-center">
+  <div className="card text-center">
+    <img src={item.image} className="card-img-top" alt="..." />
+    <div className="card-body">
+      <h3 className="card-title">{item.title}</h3>
+      <p className="card-text">{item.body}</p>
+    </div>
+    <div className="card-footer">
+      <small className="text-muted">
+        {item.date.split("T")[0]}
+      </small>
     </div>
   </div>
 </div>
-</div> */
+</Link> */
 }

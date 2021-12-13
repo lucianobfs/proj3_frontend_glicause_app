@@ -21,6 +21,8 @@ import { FaTwitterSquare } from "react-icons/fa";
 function Login(props) {
   const authContext = useContext(AuthContext);
 
+  const { loggedInUser } = useContext(AuthContext);
+
   const [state, setState] = useState({ password: "", email: "" });
   const [errors, setErrors] = useState({
     email: null,
@@ -49,7 +51,16 @@ function Login(props) {
         JSON.stringify({ ...response.data })
       );
       setErrors({ password: "", email: "" });
-      navigate("/");
+      // navigate("/");
+
+      console.log(response.data.user.role)
+      if (response.data.user.role === "ADMIN") {
+        navigate("/blog")
+      } else {
+        navigate("/");
+      }
+      
+
     } catch (err) {
       console.error(err.response);
       setErrors({ ...err.response.data.errors });
@@ -78,8 +89,8 @@ function Login(props) {
               <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
             </div>
 
-            <div className="col-md-10 mx-auto col-lg-5">
-              <form onSubmit={handleSubmit} className=" p-4 p-md-5">
+{loggedInUser.user._id ? null :             <div className="col-md-10 mx-auto col-lg-5">
+              <form onSubmit={handleSubmit} className="p-4 p-md-5 rounded" style={{backgroundColor: "white"}}>
 
                 <div className="form-floating mb-3">
 
@@ -116,7 +127,7 @@ function Login(props) {
                   </div>
                 </div>
               </form>
-            </div>
+            </div>}
           </div>
         </div>
       </div>
@@ -244,7 +255,7 @@ function Login(props) {
 
       <div className="">
         <iframe
-          className="container-fluid"
+          className="container-fluid h-80"
           width="auto"
           height="70%"
           frameborder="0"

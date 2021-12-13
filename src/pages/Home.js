@@ -52,40 +52,35 @@ function Home() {
             Add a blood glucose measurement
           </Button>
         </Link>
-
-        <Link to="/blog">
-          <Button className="btn btn-primary ms-2 mb-4 mt-4">
-            blog
-          </Button>
-        </Link>
       </div>
 
       <div className="container container-fluid col">
-        {glucoseList.map((item) => {
-          return (
-            <div className="card text-center mb-4">
-              <div className="card-header">Glucose Register</div>
-              <div className="card-body">
-                <h3 className="card-title">{item.value} mg/dL</h3>
-                <p className="card-text">
-                  Registered on {item.date} at {item.time}
-                </p>
-                <Link to={`/EditGlucose/${item._id}`} className="btn btn-primary me-2">
-                  Edit this measurement
-                </Link>
-                <Link to="#" className="btn btn-danger">
-                  Delete this measurement
+        {glucoseList
+          .map((item) => {
+            return (
+              <div className="card text-center mb-4">
+                <div className="card-header">Glucose Register</div>
+                <Link
+                  to={`/glucose/${item._id}`}
+                  className="text-decoration-none text-dark"
+                >
+                  <div className="card-body">
+                    <h3 className="card-title">{item.value} mg/dL</h3>
+                    <p className="card-text">
+                      Registered on {item.date} at {item.time}
+                    </p>
+                  </div>
+                  <div className="card-footer text-muted">
+                    Click here to Change or Delete this measurement
+                  </div>
                 </Link>
               </div>
-              <div className="card-footer text-muted">(tentar fazer calculo de quantas horas atras foi)</div>
-            </div>
-          );
-        }).reverse()}
+            );
+          })
+          .reverse()}
       </div>
     </>
   );
 }
 
 export default Home;
-
-

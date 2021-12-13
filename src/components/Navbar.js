@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid d-flex justify-content-between align-items-center text-light">
-        <NavLink className="navbar-brand" to="/">
+        <NavLink className="navbar-brand" to="/login">
           Navbar
         </NavLink>
         <button
@@ -24,58 +24,67 @@ function Navbar() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                to="/"
-              >
-                Home
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                to="/product/create"
-              >
-                Criar Produto
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                to="/product/list"
-              >
-                Todos os Produtos
-              </NavLink>
-            </li>
-          </ul>
+          {loggedInUser.user._id ? (
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  to="/login"
+                >
+                  Home
+                </NavLink>
+              </li>
+              {loggedInUser.user.role === "USER" ? (
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      `nav-link ${isActive ? "active" : ""}`
+                    }
+                    to="/"
+                  >
+                    User Area
+                  </NavLink>
+                </li>
+              ) : null}
+
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  to="/blog"
+                >
+                  Blog
+                </NavLink>
+              </li>
+            </ul>
+          ) : (
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  to="/login"
+                >
+                  Home
+                </NavLink>
+              </li>
+            </ul>
+          )}
         </div>
         <div>
           {loggedInUser.user._id ? (
             <>
-              <span>Bem-vindo, {loggedInUser.user.name}</span>
+              <span>Welcome, {loggedInUser.user.name}</span>
 
-              <button onClick={logout} className="btn btn-link">
-                Sair
+              <button onClick={logout} className="btn btn-light ms-3">
+                Logout
               </button>
             </>
-          ) : (
-            <NavLink
-              className={({ isActive }) =>
-                `nav-link ${isActive ? "active" : ""}`
-              }
-              to="/login"
-            >
-              Entrar
-            </NavLink>
-          )}
+          ) : null}
         </div>
       </div>
     </nav>
@@ -83,3 +92,10 @@ function Navbar() {
 }
 
 export default Navbar;
+
+{/* <NavLink
+  className={({ isActive }) => `nav-link  ${isActive ? "active" : ""}`}
+  to="/login"
+>
+  Login
+</NavLink>; */}

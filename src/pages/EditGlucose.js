@@ -72,62 +72,63 @@ function EditGlucose() {
           height: "calc(100vh - 56px)",
         }}
       >
-        <div className="hero-text text-white text-center">
+        <div className="hero-text text-white">
           <h2 style={{ fontSize: "4rem", marginBottom: "75px" }}>
             Edit a existent glucose measurement
           </h2>
-          <p style={{ fontSize: "1.8rem" }}>
-            Fill the fields below to edit a measurement
-          </p>
+          <div className="container container-fluid mt-5 mb-5 bg-white rounded">
+            <form onSubmit={handleSubmit}>
+              <FormField
+                className="text-dark"
+                label="Glucose Value"
+                id="GlucoseInput"
+                type="number"
+                name="value"
+                onChange={handleChange}
+                value={formData.value}
+                placeholder="The value should be in mg/dL"
+                required
+              />
+
+              <FormField
+                label="Date"
+                id="DateInput"
+                type="text"
+                name="date"
+                onChange={handleChange}
+                value={formData.date}
+                placeholder="Insert the date of the measurement in dd/mm/yyyy format"
+                required
+              />
+
+              <FormField
+                label="Time"
+                id="TimeInput"
+                type="text"
+                name="time"
+                onChange={handleChange}
+                value={formData.time}
+                placeholder="Insert the time of the measurement in hh:mm format"
+                required
+              />
+
+              <button
+                disabled={loading}
+                type="submit"
+                className="btn btn-dark mb-3"
+              >
+                {loading ? (
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : null}
+                Submit
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-
-      <div className="container mt-5 mb-5">
-        <form onSubmit={handleSubmit}>
-          <FormField
-            label="Glucose Value"
-            id="GlucoseInput"
-            type="number"
-            name="value"
-            onChange={handleChange}
-            value={formData.value}
-            placeholder="The value should be in mg/dL"
-            required
-          />
-
-          <FormField
-            label="Date"
-            id="DateInput"
-            type="text"
-            name="date"
-            onChange={handleChange}
-            value={formData.date}
-            placeholder="Insert the date of the measurement in dd/mm/yyyy format"
-            required
-          />
-
-          <FormField
-            label="Time"
-            id="TimeInput"
-            type="text"
-            name="time"
-            onChange={handleChange}
-            value={formData.time}
-            placeholder="Insert the time of the measurement in hh:mm format"
-            required
-          />
-
-          <button disabled={loading} type="submit" className="btn btn-primary">
-            {loading ? (
-              <span
-                className="spinner-border spinner-border-sm me-2"
-                role="status"
-                aria-hidden="true"
-              ></span>
-            ) : null}
-            Submit
-          </button>
-        </form>
       </div>
     </div>
   );
