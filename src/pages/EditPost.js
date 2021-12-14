@@ -60,14 +60,11 @@ function EditPost() {
     }
   }
 
-
-
-
-
-  return <div className="container mt-5 mb-5">
-          <h1>New Blog Post</h1>
-          <form onSubmit={handleSubmit}>
-          <FormField
+  return (
+    <div className="container mt-5 mb-5">
+      <h1>New Blog Post</h1>
+      <form onSubmit={handleSubmit}>
+        <FormField
           type="file"
           label="Image"
           id="postFormPicture"
@@ -113,7 +110,8 @@ function EditPost() {
           </button>
         </div>
       </form>
-      </div>
+    </div>
+  );
 }
 
 export default EditPost;

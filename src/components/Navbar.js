@@ -7,7 +7,7 @@ function Navbar() {
   const { loggedInUser, logout } = useContext(AuthContext);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg navbar-dark teste transparent">
       <div className="container-fluid d-flex justify-content-between align-items-center text-light">
         <NavLink className="navbar-brand" to="/login">
           Navbar

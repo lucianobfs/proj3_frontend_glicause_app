@@ -6,6 +6,8 @@ import FormField from "../components/FormField";
 
 import TxtArea from "../components/TxtArea";
 
+import MDEditor from "@uiw/react-md-editor";
+
 import api from "../apis/api";
 // import MyEditor from "../components/MyEditor";
 
@@ -92,8 +94,9 @@ function PostCreate() {
           required
           readOnly={loading}
         />
+       
 
-        <TxtArea
+        {/* <TxtArea
           label="Post Body"
           id="postFormBody"
           name="body"
@@ -101,7 +104,7 @@ function PostCreate() {
           value={postData.body}
           required
           readOnly={loading}
-        />
+        /> */}
 
         {/* <FormField
         type="text-area"
@@ -123,7 +126,7 @@ function PostCreate() {
                   role="status"
                   aria-hidden="true"
                 ></span>{" "}
-                <span>Carregando...</span>{" "}
+                <span>Loading...</span>{" "}
               </>
             ) : (
               "Enviar"

@@ -12,15 +12,54 @@ import VisibilitySensor from "react-visibility-sensor";
 import { FaFileMedicalAlt } from "react-icons/fa";
 import { FaSyringe } from "react-icons/fa";
 import { FaArrowAltCircleUp } from "react-icons/fa";
-import {FaArrowAltCircleDown} from "react-icons/fa"
+import { FaArrowAltCircleDown } from "react-icons/fa";
 
 function Home() {
+
   const [glucoseList, setGlucoseList] = useState([]);
+
+  const [originalArr, setOriginalArr] = useState([])
+
+  let [formData, setFormData] = useState({
+    initialDate: "",
+    finalDate: "",
+  });
+
+  function handleChange(event) {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value || event.target.option,
+    });
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log("o formData: ", formData);
+
+    if (formData.initialDate !== "" && formData.finalDate !== "") {
+      console.log("CAIU NO IF")
+      
+      setGlucoseList(
+        originalArr.filter((item) => {
+          return (
+            new Date(item.date) >= new Date(formData.initialDate) &&
+            new Date(item.date) <= new Date(formData.finalDate)
+          );
+        })
+      );
+    }
+
+    
+  }
+
+  
 
   useEffect(() => {
     async function fetchGlucoses() {
       try {
         const response = await api.get("/profile");
+
+        setOriginalArr(response.data.glucose)
 
         setGlucoseList(response.data.glucose);
       } catch (err) {
@@ -31,40 +70,56 @@ function Home() {
     fetchGlucoses();
   }, []);
 
-  console.log(glucoseList);
+  // useEffect(() => {
+  //   if (glucoseList !== []) {
+  //     if (formData.initialDate !== "" && formData.finalDate !== "") {
+  //       setGlucoseList(
+  //         glucoseList.filter((item) => {
+  //           return (
+  //             new Date(item.date) >= new Date(formData.initialDate) &&
+  //             new Date(item.date) <= new Date(formData.finalDate)
+  //           );
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [formData.initialDate, formData.finalDate]);
+
+  console.log("a glucoseList: ", glucoseList);
 
   function glucoFunction() {
-    return (
-      glucoseList
-        .map((item) => {
-          return item.value;
-        })
-        .reduce((valoranterior, valoratual) => {
-          return valoranterior + valoratual;
-        }, 0)
-    );
+    return glucoseList
+      .map((item) => {
+        return item.value;
+      })
+      .reduce((valoranterior, valoratual) => {
+        return valoranterior + valoratual;
+      }, 0);
   }
 
   let sortedArr = glucoseList.sort((a, b) => {
-    return new Date(b.date) - new Date(a.date)
-  })
+    return new Date(b.date) - new Date(a.date);
+  });
 
   console.log(glucoFunction());
 
-  console.log(glucoseList.map((item) => {
-    return item.value
-  }))
+  console.log(
+    glucoseList.map((item) => {
+      return item.value;
+    })
+  );
+
 
   return (
     <>
       <div
-        className="hero-image d-flex align-items-center justify-content-center"
+        className=" d-flex align-items-center justify-content-center"
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "relative",
-          height: "calc(100vh - 56px)",
+          height: "100vh",
         }}
       >
         <div className="hero-text text-white text-center">
@@ -77,7 +132,51 @@ function Home() {
 
       {glucoseList.length === 0 ? null : (
         <>
-          <Graph />
+          <div className="container container-fluid d-flex d-row align-items-center text-center justify-content-center mt-3">
+            <form onSubmit={handleSubmit}>
+              <label className="label">
+                Start:
+                <input
+                  className="form-control"
+                  type="date"
+                  name="initialDate"
+                  value={formData.initialDate}
+                  onChange={handleChange}
+                />
+              </label>
+
+              <label className="label ">
+                End:
+                <input
+                  className="form-control"
+                  type="date"
+                  name="finalDate"
+                  value={formData.finalDate}
+                  onChange={handleChange}
+                />
+              </label>
+
+              <div className="mt-3 d-flex justify-content-around container-fluid container">
+              <button type="submit" className="btn btn-light w-45">
+                Filter
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary w-45"
+                onClick={() => {
+                  setFormData({
+                    initialDate: "",
+                    finalDate: "",
+                  });
+                  setGlucoseList([...originalArr])
+                }}
+              >
+                Clear
+              </button>
+              </div>
+            </form>
+          </div>
+          <Graph glucoseList={glucoseList} />
           <div className="container text-center my-5 py-5">
             <div className="row ">
               <div className="col-lg-3">
@@ -101,7 +200,9 @@ function Home() {
                     )}
                   </CountUp>
 
-                  <p className="card-text fw-bold">Blood Glucose Measurements</p>
+                  <p className="card-text fw-bold">
+                    Blood Glucose Measurements
+                  </p>
                 </div>
               </div>
 
@@ -112,7 +213,7 @@ function Home() {
                 <div className="card-body">
                   <CountUp
                     start={0}
-                    end={glucoFunction()/glucoseList.length}
+                    end={glucoFunction() / glucoseList.length}
                     delay={0}
                     duration={2}
                     redraw={true}
@@ -140,9 +241,12 @@ function Home() {
                 <div className="card-body">
                   <CountUp
                     start={0}
-                    end={Math.max.apply(Math, glucoseList.map((item) => {
-                      return item.value
-                    }))}
+                    end={Math.max.apply(
+                      Math,
+                      glucoseList.map((item) => {
+                        return item.value;
+                      })
+                    )}
                     delay={0}
                     duration={2}
                     redraw={true}
@@ -167,9 +271,12 @@ function Home() {
                 <div className="card-body">
                   <CountUp
                     start={0}
-                    end={Math.min.apply(Math, glucoseList.map((item) => {
-                      return item.value
-                    }))}
+                    end={Math.min.apply(
+                      Math,
+                      glucoseList.map((item) => {
+                        return item.value;
+                      })
+                    )}
                     delay={0}
                     duration={2}
                     redraw={true}
