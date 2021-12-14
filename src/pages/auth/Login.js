@@ -2,15 +2,18 @@ import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
 import "../../assets/styles/index.css";
 import hero from "../../assets/images/hero-img.jpg";
-import location from "../../assets/images/stock.png";
+import location from "../../assets/images/sv.png";
 
 import React, { useState, useContext } from "react";
-import Draggable from "react-draggable";
 import { Link, useNavigate } from "react-router-dom";
 
 import Accordion from 'react-bootstrap/Accordion'
 import CountUp, { useCountUp } from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
+
+import { FcBiohazard } from "react-icons/fc";
+import { FcBiotech } from "react-icons/fc";
+import { FcElectricalSensor } from "react-icons/fc";
 
 import { FaBookMedical } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
@@ -143,7 +146,7 @@ function Login(props) {
           <div className="col-md-10 mx-auto col-lg-5 mt-5 pt-5">
             <Accordion defaultActiveKey="" >
               <Accordion.Item eventKey="0" className="noselect" style={{ border: "none" }}>
-                <Accordion.Header><div className="btn btn-secondary accordion-detail">1</div> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step One 1#</h2>
+                <Accordion.Header><FcElectricalSensor size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step One 1#</h2>
                 </Accordion.Header>
                 <div className="">
                   <Accordion.Body>
@@ -158,7 +161,7 @@ function Login(props) {
                 </div>
               </Accordion.Item>
               <Accordion.Item eventKey="1" style={{ border: "none" }}>
-                <Accordion.Header><div className="btn btn-secondary accordion-detail text-center align-top">2</div> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Two 2#</h2></Accordion.Header>
+                <Accordion.Header><FcBiotech size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Two 2#</h2></Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -170,7 +173,7 @@ function Login(props) {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2" style={{ border: "none" }}>
-                <Accordion.Header><div className="btn btn-secondary accordion-detail">3</div> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Three 3#</h2></Accordion.Header>
+                <Accordion.Header><FcBiohazard size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Three 3#</h2></Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -270,16 +273,16 @@ function Login(props) {
           <div className="container">
             <div className="row">
               <div className="col-md-6 my-3">
-                <h2>5th Avenue, New York <br /> USA 10255</h2>
+                <h2>367 Addison Ave, Palo Alto, CA <br /> 94301, United States</h2>
               </div>
               <div className="col-md-6 text-lg-end my-3">
-                <h2>+55 (11) 4002 8922</h2>
+                <h2>+1 (521) 734 315</h2>
               </div>
               <hr />
             </div>
 
             <div className="row">
-              <div className="col-md-6 text-lg-end my-3">
+              <div className="col-md-6  my-3">
                 <a
                   href="https://instagram.com"
                   target="_blank"
@@ -302,7 +305,7 @@ function Login(props) {
                   <FaTwitter color="#00ACEE" size="35px" />
                 </a>
               </div>
-              <div className="col-md-6 my-3">
+              <div className="col-md-6 text-lg-end my-3">
                 <p>Copyrights © 2021</p>
               </div>
             </div>
