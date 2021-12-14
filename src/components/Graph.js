@@ -39,12 +39,14 @@ function Graph() {
           height: "100px",
           type: "line",
           data: {
-            labels: glucoseData.map((item) => {
+            labels: glucoseData.sort((a, b) => {
+              return new Date(a.date) - new Date (b.date)
+            }).map((item) => {
                 return item.date
             }),
             datasets: [
               {
-                label: "Your Glucose Measurement in mg/dL",
+                label: "Your Blood Glucose Measurement in mg/dL",
                 data: glucoseData.map((item) => {
                     return item.value
                 }),
