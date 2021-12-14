@@ -80,7 +80,7 @@ function AddGlucose() {
           <FormField
             label="Date"
             id="DateInput"
-            type="text"
+            type="date"
             name="date"
             onChange={handleChange}
             value={formData.date}
@@ -91,7 +91,7 @@ function AddGlucose() {
           <FormField
             label="Time"
             id="TimeInput"
-            type="text"
+            type="time"
             name="time"
             onChange={handleChange}
             value={formData.time}
