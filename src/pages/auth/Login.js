@@ -1,8 +1,8 @@
 import { AuthContext } from "../../contexts/authContext";
 import api from "../../apis/api";
 import "../../assets/styles/index.css";
-import hero from "../../assets/images/hero-img.jpg";
-import location from "../../assets/images/sv.png";
+import hero from "../../assets/images/hero-img2.webp";
+import location from "../../assets/images/sv.jpg";
 
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -88,7 +88,7 @@ function Login(props) {
 
           <div class="row align-items-center g-lg-5 py-5">
 
-            <div class="col-lg-7 text-center text-lg-start">
+            <div class="col-lg-7 text-center text-lg-start text-white">
               <h1 class="display-4 fw-bold lh-1 mb-3">Vertically centered hero sign-up form</h1>
               <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
             </div>
@@ -262,7 +262,7 @@ function Login(props) {
         <div
           className="hero-image d-flex align-items-center justify-content-center"
           style={{
-            backgroundImage: `url(${location})`,
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${location})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             position: "relative",
@@ -270,13 +270,13 @@ function Login(props) {
           }}
         >
 
-          <div className="container">
+          <div className="container text-white">
             <div className="row">
               <div className="col-md-6 my-3">
                 <h2>367 Addison Ave, Palo Alto, CA <br /> 94301, United States</h2>
               </div>
               <div className="col-md-6 text-lg-end my-3">
-                <h2>+1 (521) 734 315</h2>
+                <h2>+1 (866) 898 9087</h2>
               </div>
               <hr />
             </div>
