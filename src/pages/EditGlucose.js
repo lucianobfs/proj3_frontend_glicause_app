@@ -69,11 +69,11 @@ function EditGlucose() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "relative",
-          height: "calc(100vh - 56px)",
+          height: "100vh",
         }}
       >
-        <div className="hero-text text-white">
-          <h2 style={{ fontSize: "4rem", marginBottom: "75px" }}>
+        <div className="hero-text text-white container container-fluid">
+          <h2 style={{ fontSize: "3rem", marginBottom: "75px" }}>
             Edit a existent glucose measurement
           </h2>
           <div className="container container-fluid mt-5 mb-5 bg-white rounded">

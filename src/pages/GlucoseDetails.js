@@ -58,7 +58,7 @@ function GlucoseDetails() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "relative",
-          height: "calc(100vh - 56px)",
+          height: "100vh",
         }}
       >
         <div className="hero-text text-white text-center">

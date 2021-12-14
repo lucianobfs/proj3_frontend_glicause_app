@@ -80,7 +80,7 @@ function Login(props) {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "relative",
-          height: "calc(100vh - 56px)",
+          height: "100vh",
         }}
       >
 

@@ -46,7 +46,6 @@ function Blog() {
               <img src={item.image} className="card-img-top img-fluid mh-100 " alt="..."  style={{width: "1300px"}} />
               <div className="card-body">
                 <h1 className="card-title text-center">{item.title}</h1>
-                <p className="card-text">{item.body}</p>
                 <p className="card-text">
                   <Link
                     to={`/${item._id}`}
