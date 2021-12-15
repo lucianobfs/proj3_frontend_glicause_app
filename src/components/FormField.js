@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function FormField(props) {
   return (
-    <div>
+    <div className={props.float}>
       <label htmlFor={props.id} className="form-label text-dark">
         {props.label}
       </label>
