@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 
 // imports
-import hero from "../assets/images/hero-img.jpg";
 import Button from "@restart/ui/esm/Button";
 import api from "../apis/api";
 
@@ -85,22 +84,3 @@ function Blog() {
 }
 
 export default Blog;
-
-{
-  /* <Link to={`/${item._id}`} className="text-decoration-none text-dark">
-<div className="align-items-center">
-  <div className="card text-center">
-    <img src={item.image} className="card-img-top" alt="..." />
-    <div className="card-body">
-      <h3 className="card-title">{item.title}</h3>
-      <p className="card-text">{item.body}</p>
-    </div>
-    <div className="card-footer">
-      <small className="text-muted">
-        {item.date.split("T")[0]}
-      </small>
-    </div>
-  </div>
-</div>
-</Link> */
-}

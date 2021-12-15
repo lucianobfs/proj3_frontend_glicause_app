@@ -1,17 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../apis/api";
-import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-import { FaFacebookSquare } from "react-icons/fa";
-import { FaTwitterSquare } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { NavItem } from "react-bootstrap";
 
-import { AuthContext } from "../contexts/authContext";
-
-import { Navigate } from "react-router-dom";
 
 import ConfirmationModal from "../components/ConfirmationModal";
 import caneta from "../assets/images/diabetes.jpg";
@@ -24,7 +16,7 @@ function GlucoseDetails() {
 
   const [details, setDetails] = useState([]);
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchGlucose() {

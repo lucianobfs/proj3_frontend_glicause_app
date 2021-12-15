@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import Chart from "chart.js/auto";
-import api from "../apis/api";
 
 function Graph(props) {
   const [chart, setChart] = useState(null);
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
-  const [graph, setGraph] = useState(props.glucoseList);
+  // const [graph, setGraph] = useState(props.glucoseList);
 
   // useEffect(() => {
   //   async function fetchGraph() {
