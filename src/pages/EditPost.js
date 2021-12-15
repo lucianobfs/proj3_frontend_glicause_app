@@ -35,11 +35,33 @@ function EditPost() {
     fetchFormData();
   }, [id]);
 
-  function handleChange(event) {
-    setFormData({ ...formData, [event.target.name]: event.target.value });
-  }
+  function handleChange(e) {
+    if (e.target.files) {
+      return setFormData({
+        ...formData,
+        [e.target.name]: e.target.files[0],
+      });
+    }
 
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
   console.log(formData);
+
+  async function handleFileUpload(file) {
+    try {
+      const uploadData = new FormData();
+
+      uploadData.append("picture", file);
+
+      const response = await api.post("/upload", uploadData);
+
+      console.log(response);
+
+      return response.data.url;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -47,13 +69,19 @@ function EditPost() {
     try {
       setLoading(true);
 
-      const response = await api.patch(`/editPost/${id}`, formData);
+      const image = await handleFileUpload(formData.picture);
+
+      const response = await api.patch(`/editPost/${id}`, {
+        ...formData,
+        image,
+      });
 
       console.log(response);
 
+      setLoading(false);
+
       navigate("/blog");
 
-      setLoading(false);
     } catch (err) {
       console.log(err);
       setLoading(false);

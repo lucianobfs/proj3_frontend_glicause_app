@@ -44,7 +44,8 @@ function PostDetails() {
 
   return (
     <>
-     
+      <div style={{height: "100px", backgroundColor: "#62c2ec"}}></div>
+
       <div className="container">
         {loading ? (
           <div

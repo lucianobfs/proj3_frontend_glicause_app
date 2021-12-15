@@ -3,94 +3,211 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
 import { MdAddAlarm } from "react-icons/md";
 
+import FormField from "../../components/FormField";
+import Error from "../../components/Error";
+
 function Signup(props) {
-  const [state, setState] = useState({ name: "", password: "", email: "" });
-  const [errors, setErrors] = useState({
-    name: null,
-    email: null,
-    password: null,
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
+
+  const [loading, setLoading] = useState(false);
+
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
-  function handleChange(event) {
-    setState({
-      ...state,
-      [event.currentTarget.name]: event.currentTarget.value,
-    });
+  function handleChange(e) {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    if (userData.password !== userData.confirmPassword) {
+      return setError("Senha e confirmação diferentes.");
+    }
 
     try {
-      const response = await api.post("/signup", state);
-      setErrors({ name: "", password: "", email: "" });
+      setLoading(true);
+      setError(null);
+
+      const response = await api.post(
+        "http://localhost:4000/api/signup",
+        userData
+      );
+
+      console.log(response);
+
+      setLoading(false);
+
       navigate("/login");
     } catch (err) {
+      setLoading(false);
+      console.error(err);
       if (err.response) {
         console.error(err.response);
-        return setErrors({ ...err.response.data.errors });
+        setError(err.response.data);
       }
-
-      console.error(err);
     }
   }
 
   return (
-    <body className="container text-center py-5 my-5 col-md-3" cz-shortcut-listen="true">
-
-      <main className="form-signin">
-        <form onSubmit={handleSubmit}>
-        <MdAddAlarm className="m-3" size="60px"/>
-            <h1 className="h3 mb-3 fw-normal">Please sign up</h1>
-           
-            <div className="form-floating my-3">              
+    <div>
+      <div style={{ height: "100px", backgroundColor: "#62c2ec" }}></div>
+      <body
+        className="container text-center py-5 my-5 col-md-3"
+        cz-shortcut-listen="true"
+      >
+        <main className="form-signin">
+          <form onSubmit={handleSubmit}>
+            <div className="form-floating mb-3">
               <input
                 type="text"
-                className="form-control"
-                id="signupFormName floatingInput"
-                value={state.name}
-                error={errors.name}
+                name="name"
+                id="signupFormName"
+                value={userData.name}
+                readOnly={loading}
+                // error={errors.password}
                 onChange={handleChange}
+                className="form-control"
               />
-              <label htmlFor="signupFormName floatingInput">Name</label>
+              <label htmlFor="signupFormName" className="">
+                Name
+              </label>
             </div>
 
-            <div className="form-floating my-3">              
+            {/* <FormField
+          float="form-floating"
+          label="Name"
+          id="signupFormName"
+          required
+          name="name"
+          onChange={handleChange}
+          value={userData.name}
+          readOnly={loading}
+        /> */}
+
+            <div className="form-floating mb-3">
               <input
                 type="email"
-                className="form-control"
-                id="signupFormEmail floatingInput"
-                name="email"                
-                value={state.email}
-                error={errors.email}
+                name="email"
+                id="signupFormEmail"
+                value={userData.email}
+                // error={errors.email}
                 onChange={handleChange}
+                className="form-control"
+                readOnly={loading}
               />
-              <label htmlFor="signupFormEmail floatingInput">E-mail Address</label>
+              <label htmlFor="signupFormEmail">E-mail Address</label>
             </div>
 
-            <div className="form-floating my-3">              
+            {/* <FormField
+        float="form-floating"
+          type="email"
+          label="E-mail"
+          id="signupFormEmail"
+          required
+          name="email"
+          onChange={handleChange}
+          value={userData.email}
+          readOnly={loading}
+        /> */}
+
+            <div className="form-floating mb-3">
               <input
                 type="password"
-                className="form-control"
-                id="signupFormPassword floatingPassword"
-                name="password"                
-                value={state.password}
-                error={errors.password}
+                name="password"
+                id="signupFormPassword"
+                value={userData.password}
+                // error={errors.password}
                 onChange={handleChange}
+                className="form-control"
+                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
+                readOnly={loading}
               />
-              <label htmlFor="signupFormPassword floatingPassword">Password</label>
+              <label htmlFor="signupFormPassword" className="">
+                Password
+              </label>
             </div>
 
-            <div>
-              <button type="submit" className="w-100 btn btn-lg btn-primary">Sign Up</button>
+            {/* <FormField
+        float="form-floating"
+          type="password"
+          label="Password"
+          id="signupFormPassword"
+          required
+          name="password"
+          onChange={handleChange}
+          value={userData.password}
+          pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
+          readOnly={loading}
+        /> */}
 
-              <Link to="/login">Already have an account? Click here to login.</Link>
+            <div className="form-floating mb-3">
+              <input
+                type="password"
+                name="confirmPassword"
+                id="signupFormConfirmPassword"
+                value={userData.confirmPassword}
+                // error={errors.password}
+                onChange={handleChange}
+                className="form-control"
+                readOnly={loading}
+              />
+              <label htmlFor="signupFormConfirmPassword" className="">
+                Confirm Password
+              </label>
             </div>
-        </form>
-      </main>
-    </body>
+
+            {/* <FormField
+        float="form-floating"
+          type="password"
+          label="Confirme your Password"
+          id="signupFormConfirmPassword"
+          required
+          name="confirmPassword"
+          onChange={handleChange}
+          value={userData.confirmPassword}
+          readOnly={loading}
+        /> */}
+
+            <div className="mb-3">
+              <button
+                disabled={loading}
+                type="submit"
+                className="btn btn-primary w-100"
+                style={{height: "48px"}}
+              >
+                {loading ? (
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                ) : null}
+                Signup!
+              </button>
+              <div
+                style={{ backgroundColor: "grey", color: "white" }}
+                className="rounded mt-3"
+              >
+                <span>
+                  The password must contain at least: 8 characters, one upper
+                  case letter, one number, and one special character
+                </span>
+              </div>
+            </div>
+
+            {error ? <Error>{error}</Error> : null}
+          </form>
+        </main>
+        <Link to="/login">Already have an account? Click here to login.</Link>
+      </body>
+    </div>
   );
 }
 

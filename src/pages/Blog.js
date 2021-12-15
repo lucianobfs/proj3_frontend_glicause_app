@@ -31,9 +31,9 @@ function Blog() {
 
   return (
     <>
-      
+      <div style={{height: "100px", backgroundColor: "#62c2ec"}}></div>
 
-      <div className="container container-fluid">
+      <div className="container container-fluid mt-5">
         {loggedInUser.user.role === "ADMIN" ? (
           <div className="container container-fluid">
             <Link to="/AddPost">

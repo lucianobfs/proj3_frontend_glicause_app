@@ -12,7 +12,6 @@ import Accordion from "react-bootstrap/Accordion";
 import CountUp, { useCountUp } from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
-
 import { FcElectricalSensor } from "react-icons/fc";
 import { FcBiotech } from "react-icons/fc";
 import { FcBiohazard } from "react-icons/fc";
@@ -24,16 +23,21 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 
+import Error from "../../components/Error";
+
+
 function Login(props) {
   const authContext = useContext(AuthContext);
 
   const { loggedInUser } = useContext(AuthContext);
 
   const [state, setState] = useState({ password: "", email: "" });
-  const [errors, setErrors] = useState({
-    email: null,
-    password: null,
-  });
+  // const [errors, setErrors] = useState({
+  //   email: null,
+  //   password: null,
+  // });
+
+  const [error, setError] = useState(null)
 
   const navigate = useNavigate();
 
@@ -46,8 +50,14 @@ function Login(props) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     try {
+      // setErrors({
+      //   email: null,
+      //   password: null,
+      // });
+
+      setError(null)
+
       const response = await api.post("/login", state);
       console.log(response);
 
@@ -56,7 +66,8 @@ function Login(props) {
         "loggedInUser",
         JSON.stringify({ ...response.data })
       );
-      setErrors({ password: "", email: "" });
+      // setErrors({ password: "", email: "" }); -> descomentar dps
+
       // navigate("/");
 
       console.log(response.data.user.role);
@@ -67,12 +78,15 @@ function Login(props) {
       }
     } catch (err) {
       console.error(err.response);
-      setErrors({ ...err.response.data.errors });
+      // setErrors({ ...err.response.data.errors }); -> descomentar dps
+      setError(true)
+      
     }
   }
 
   return (
     <>
+
       <div
         className="hero-image d-flex align-items-center justify-content-center"
         style={{
@@ -110,7 +124,7 @@ function Login(props) {
                       name="email"
                       id="signupFormEmail"
                       value={state.email}
-                      error={errors.email}
+                      // error={errors.email}
                       onChange={handleChange}
                       className="form-control"
                     />
@@ -123,7 +137,7 @@ function Login(props) {
                       name="password"
                       id="signupFormPassword"
                       value={state.password}
-                      error={errors.password}
+                      // error={errors.password}
                       onChange={handleChange}
                       className="form-control"
                     />
@@ -144,6 +158,7 @@ function Login(props) {
                         Don't have an account? Click here to signup!
                       </Link>
                     </div>
+                    {error ? <Error>Invalid User or Password</Error> : null}
                   </div>
                 </form>
               </div>
@@ -161,7 +176,6 @@ function Login(props) {
           </div>
 
           <div className="col-md-10 mx-auto col-lg-5 mt-5 pt-5">
-
             <Accordion defaultActiveKey="">
               <Accordion.Item
                 eventKey="0"
@@ -181,7 +195,6 @@ function Login(props) {
                 </div>
               </Accordion.Item>
               <Accordion.Item eventKey="1" style={{ border: "none" }}>
-
                 <Accordion.Header>
                   <FcBiotech size="45px" />{" "}
                   <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>
@@ -193,7 +206,6 @@ function Login(props) {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2" style={{ border: "none" }}>
-
                 <Accordion.Header>
                   <FcBiohazard size="45px" />{" "}
                   <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>
@@ -210,7 +222,7 @@ function Login(props) {
         </div>
       </div>
 
-      <div style={{backgroundColor: "#62c2ec"}}>
+      <div style={{ backgroundColor: "#62c2ec" }}>
         <div className="container text-center my-5 py-5">
           <div className="row ">
             <div className="col-lg-4">
