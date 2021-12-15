@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 
 import { AuthContext } from "../contexts/authContext";
 
+import { MdAddAlarm } from "react-icons/md";
+
+
 function Navbar() {
   const { loggedInUser, logout } = useContext(AuthContext);
 
@@ -10,7 +13,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-dark teste transparent">
       <div className="container-fluid d-flex justify-content-between align-items-center text-light">
         <NavLink className="navbar-brand" to="/login">
-          Navbar
+          <MdAddAlarm className="mx-2" size="40px"/>
         </NavLink>
         <button
           className="navbar-toggler"

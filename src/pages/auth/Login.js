@@ -12,9 +12,10 @@ import Accordion from "react-bootstrap/Accordion";
 import CountUp, { useCountUp } from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { FcBiohazard } from "react-icons/fc";
-import { FcBiotech } from "react-icons/fc";
-import { FcElectricalSensor } from "react-icons/fc";
+
+import { FcSurvey } from "react-icons/fc";
+import { FcComboChart } from "react-icons/fc";
+import { FcApproval } from "react-icons/fc";
 
 import { FaBookMedical } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
@@ -160,6 +161,7 @@ function Login(props) {
           </div>
 
           <div className="col-md-10 mx-auto col-lg-5 mt-5 pt-5">
+
             <Accordion defaultActiveKey="">
               <Accordion.Item
                 eventKey="0"
@@ -179,6 +181,7 @@ function Login(props) {
                 </div>
               </Accordion.Item>
               <Accordion.Item eventKey="1" style={{ border: "none" }}>
+
                 <Accordion.Header>
                   <FcBiotech size="45px" />{" "}
                   <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>
@@ -190,6 +193,7 @@ function Login(props) {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2" style={{ border: "none" }}>
+
                 <Accordion.Header>
                   <FcBiohazard size="45px" />{" "}
                   <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>
