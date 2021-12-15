@@ -78,7 +78,7 @@ function Navbar() {
         <div>
           {loggedInUser.user._id ? (
             <>
-              <span>Welcome, {loggedInUser.user.name}</span>
+              <span className="container-fluid">Welcome, {loggedInUser.user.name}</span>
 
               <button onClick={logout} className="btn btn-light ms-3">
                 Logout

@@ -73,40 +73,60 @@ function PostCreate() {
   }
 
   return (
-    <div className="container mt-5 mb-5">
-      <h1>New Blog Post</h1>
-      <form onSubmit={handleSubmit}>
-        <FormField
-          type="file"
-          label="Image"
-          id="postFormPicture"
-          name="picture"
-          onChange={handleChange}
-          readOnly={loading}
-        />
+    <>
+      <div
+        className=" d-flex align-items-center justify-content-center"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dzm8l29kq/image/upload/v1639530362/pictures/wordpress-g53cddbcc5_1920_yafmzo.jpg)",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          position: "relative",
+          height: "100vh",
+        }}
+      >
+        <div className="hero-text text-white text-center">
+          <h2 style={{ fontSize: "4rem", marginBottom: "75px" }}>Create a Blog Post</h2>
+          <p style={{ fontSize: "1.8rem" }}>
+            Fill the Fields Below
+          </p>
+        </div>
+      </div>
 
-        <FormField
-          label="Post Title"
-          id="titleFormName"
-          name="title"
-          onChange={handleChange}
-          value={postData.title}
-          required
-          readOnly={loading}
-        />
-       
+      <div className="container mt-5 mb-5">
+        <h1>New Blog Post</h1>
+        <form onSubmit={handleSubmit}>
+          <FormField
+            type="file"
+            label="Image"
+            id="postFormPicture"
+            name="picture"
+            onChange={handleChange}
+            readOnly={loading}
+          />
 
-        {/* <TxtArea
-          label="Post Body"
-          id="postFormBody"
-          name="body"
-          onChange={handleChange}
-          value={postData.body}
-          required
-          readOnly={loading}
-        /> */}
+          <FormField
+            label="Post Title"
+            id="titleFormName"
+            name="title"
+            onChange={handleChange}
+            value={postData.title}
+            required
+            readOnly={loading}
+          />
 
-        {/* <FormField
+          <TxtArea
+            rows={15}
+            label="Post Body"
+            id="postFormBody"
+            name="body"
+            onChange={handleChange}
+            value={postData.body}
+            required
+            readOnly={loading}
+          />
+
+          {/* <FormField
         type="text-area"
           label="Post Body"
           id="postFormBody"
@@ -117,24 +137,29 @@ function PostCreate() {
           readOnly={loading}
         /> */}
 
-        <div className="mb-3 text-right">
-          <button disabled={loading} type="submit" className="btn btn-primary">
-            {loading ? (
-              <>
-                <span
-                  className="spinner-border spinner-border-sm"
-                  role="status"
-                  aria-hidden="true"
-                ></span>{" "}
-                <span>Loading...</span>{" "}
-              </>
-            ) : (
-              "Enviar"
-            )}
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="mb-3 text-right">
+            <button
+              disabled={loading}
+              type="submit"
+              className="btn btn-primary"
+            >
+              {loading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>{" "}
+                  <span>Loading...</span>{" "}
+                </>
+              ) : (
+                "Enviar"
+              )}
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
 

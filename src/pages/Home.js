@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import Modal from "react-bootstrap/Modal";
 
 // imports
 import hero from "../assets/images/hero-img.jpg";
@@ -15,10 +16,13 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 
 function Home() {
-
   const [glucoseList, setGlucoseList] = useState([]);
 
-  const [originalArr, setOriginalArr] = useState([])
+  const [originalArr, setOriginalArr] = useState([]);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const [warning, setWarning] = useState(false);
 
   let [formData, setFormData] = useState({
     initialDate: "",
@@ -37,29 +41,30 @@ function Home() {
     console.log("o formData: ", formData);
 
     if (formData.initialDate !== "" && formData.finalDate !== "") {
-      console.log("CAIU NO IF")
-      
-      setGlucoseList(
-        originalArr.filter((item) => {
-          return (
-            new Date(item.date) >= new Date(formData.initialDate) &&
-            new Date(item.date) <= new Date(formData.finalDate)
-          );
-        })
-      );
+      console.log("CAIU NO IF");
+
+      if (new Date(formData.initialDate) > new Date(formData.finalDate)) {
+        setWarning(true);
+        setShowModal(true);
+      } else {
+        setGlucoseList(
+          originalArr.filter((item) => {
+            return (
+              new Date(item.date) >= new Date(formData.initialDate) &&
+              new Date(item.date) <= new Date(formData.finalDate)
+            );
+          })
+        );
+      }
     }
-
-    
   }
-
-  
 
   useEffect(() => {
     async function fetchGlucoses() {
       try {
         const response = await api.get("/profile");
 
-        setOriginalArr(response.data.glucose)
+        setOriginalArr(response.data.glucose);
 
         setGlucoseList(response.data.glucose);
       } catch (err) {
@@ -69,21 +74,6 @@ function Home() {
 
     fetchGlucoses();
   }, []);
-
-  // useEffect(() => {
-  //   if (glucoseList !== []) {
-  //     if (formData.initialDate !== "" && formData.finalDate !== "") {
-  //       setGlucoseList(
-  //         glucoseList.filter((item) => {
-  //           return (
-  //             new Date(item.date) >= new Date(formData.initialDate) &&
-  //             new Date(item.date) <= new Date(formData.finalDate)
-  //           );
-  //         })
-  //       );
-  //     }
-  //   }
-  // }, [formData.initialDate, formData.finalDate]);
 
   console.log("a glucoseList: ", glucoseList);
 
@@ -109,13 +99,13 @@ function Home() {
     })
   );
 
-
   return (
     <>
       <div
         className=" d-flex align-items-center justify-content-center"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${hero})`,
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dzm8l29kq/image/upload/v1639529128/pictures/run-gea4cf08fe_1920_n2whzb.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "relative",
@@ -157,140 +147,142 @@ function Home() {
               </label>
 
               <div className="mt-3 d-flex justify-content-around container-fluid container">
-              <button type="submit" className="btn btn-light w-45">
-                Filter
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary w-45"
-                onClick={() => {
-                  setFormData({
-                    initialDate: "",
-                    finalDate: "",
-                  });
-                  setGlucoseList([...originalArr])
-                }}
-              >
-                Clear
-              </button>
+                <button type="submit" className="btn btn-light w-45">
+                  Filter
+                </button>
+                <button
+                  type="submit"
+                  className="btn btn-primary w-45"
+                  onClick={() => {
+                    setFormData({
+                      initialDate: "",
+                      finalDate: "",
+                    });
+                    setGlucoseList([...originalArr]);
+                  }}
+                >
+                  Clear
+                </button>
               </div>
             </form>
           </div>
           <Graph glucoseList={glucoseList} />
-          <div className="container text-center my-5 py-5">
-            <div className="row ">
-              <div className="col-lg-3">
-                <i className="card-img-top" src="..." alt="Card image cap">
-                  <FaSyringe className="pt-2" size="50px" />
-                </i>
-                <div className="card-body">
-                  <CountUp
-                    start={0}
-                    end={glucoseList.length}
-                    delay={0}
-                    duration={2}
-                    redraw={true}
-                  >
-                    {({ countUpRef, start }) => (
-                      <VisibilitySensor onChange={start} delayedCall>
-                        <div>
-                          <h1 className="fw-bold" ref={countUpRef} />
-                        </div>
-                      </VisibilitySensor>
-                    )}
-                  </CountUp>
+          <div style={{ backgroundColor: "#62c2ec" }} className="">
+            <div className="container text-center my-5 py-5">
+              <div className="row ">
+                <div className="col-lg-3">
+                  <i className="card-img-top" src="..." alt="Card image cap">
+                    <FaSyringe className="pt-2" size="50px" />
+                  </i>
+                  <div className="card-body">
+                    <CountUp
+                      start={0}
+                      end={glucoseList.length}
+                      delay={0}
+                      duration={2}
+                      redraw={true}
+                    >
+                      {({ countUpRef, start }) => (
+                        <VisibilitySensor onChange={start} delayedCall>
+                          <div>
+                            <h1 className="fw-bold" ref={countUpRef} />
+                          </div>
+                        </VisibilitySensor>
+                      )}
+                    </CountUp>
 
-                  <p className="card-text fw-bold">
-                    Blood Glucose Measurements
-                  </p>
+                    <p className="card-text fw-bold">
+                      Blood Glucose Measurements
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="col-lg-3">
-                <i className="card-img-top" src="..." alt="Card image cap">
-                  <FaFileMedicalAlt className="pt-2" size="50px" />
-                </i>
-                <div className="card-body">
-                  <CountUp
-                    start={0}
-                    end={glucoFunction() / glucoseList.length}
-                    delay={0}
-                    duration={2}
-                    redraw={true}
-                    decimals={2}
-                  >
-                    {({ countUpRef, start }) => (
-                      <VisibilitySensor onChange={start} delayedCall>
-                        <div>
-                          <h1 className="fw-bold" ref={countUpRef} />
-                        </div>
-                      </VisibilitySensor>
-                    )}
-                  </CountUp>
+                <div className="col-lg-3">
+                  <i className="card-img-top" src="..." alt="Card image cap">
+                    <FaFileMedicalAlt className="pt-2" size="50px" />
+                  </i>
+                  <div className="card-body">
+                    <CountUp
+                      start={0}
+                      end={glucoFunction() / glucoseList.length}
+                      delay={0}
+                      duration={2}
+                      redraw={true}
+                      decimals={2}
+                    >
+                      {({ countUpRef, start }) => (
+                        <VisibilitySensor onChange={start} delayedCall>
+                          <div>
+                            <h1 className="fw-bold" ref={countUpRef} />
+                          </div>
+                        </VisibilitySensor>
+                      )}
+                    </CountUp>
 
-                  <p className="card-text fw-bold">
-                    Averege Blood Glucose in mg/dL
-                  </p>
+                    <p className="card-text fw-bold">
+                      Averege Blood Glucose in mg/dL
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="col-lg-3">
-                <i className="card-img-top" src="..." alt="Card image cap">
-                  <FaArrowAltCircleUp className="pt-2" size="50px" />
-                </i>
-                <div className="card-body">
-                  <CountUp
-                    start={0}
-                    end={Math.max.apply(
-                      Math,
-                      glucoseList.map((item) => {
-                        return item.value;
-                      })
-                    )}
-                    delay={0}
-                    duration={2}
-                    redraw={true}
-                  >
-                    {({ countUpRef, start }) => (
-                      <VisibilitySensor onChange={start} delayedCall>
-                        <div>
-                          <h1 className="fw-bold" ref={countUpRef} />
-                        </div>
-                      </VisibilitySensor>
-                    )}
-                  </CountUp>
+                <div className="col-lg-3">
+                  <i className="card-img-top" src="..." alt="Card image cap">
+                    <FaArrowAltCircleUp className="pt-2" size="50px" />
+                  </i>
+                  <div className="card-body">
+                    <CountUp
+                      start={0}
+                      end={Math.max.apply(
+                        Math,
+                        glucoseList.map((item) => {
+                          return item.value;
+                        })
+                      )}
+                      delay={0}
+                      duration={2}
+                      redraw={true}
+                    >
+                      {({ countUpRef, start }) => (
+                        <VisibilitySensor onChange={start} delayedCall>
+                          <div>
+                            <h1 className="fw-bold" ref={countUpRef} />
+                          </div>
+                        </VisibilitySensor>
+                      )}
+                    </CountUp>
 
-                  <p className="card-text fw-bold">Highest Measurement</p>
+                    <p className="card-text fw-bold">Highest Measurement</p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="col-lg-3">
-                <i className="card-img-top" src="..." alt="Card image cap">
-                  <FaArrowAltCircleDown className="pt-2" size="50px" />
-                </i>
-                <div className="card-body">
-                  <CountUp
-                    start={0}
-                    end={Math.min.apply(
-                      Math,
-                      glucoseList.map((item) => {
-                        return item.value;
-                      })
-                    )}
-                    delay={0}
-                    duration={2}
-                    redraw={true}
-                  >
-                    {({ countUpRef, start }) => (
-                      <VisibilitySensor onChange={start} delayedCall>
-                        <div>
-                          <h1 className="fw-bold" ref={countUpRef} />
-                        </div>
-                      </VisibilitySensor>
-                    )}
-                  </CountUp>
+                <div className="col-lg-3">
+                  <i className="card-img-top" src="..." alt="Card image cap">
+                    <FaArrowAltCircleDown className="pt-2" size="50px" />
+                  </i>
+                  <div className="card-body">
+                    <CountUp
+                      start={0}
+                      end={Math.min.apply(
+                        Math,
+                        glucoseList.map((item) => {
+                          return item.value;
+                        })
+                      )}
+                      delay={0}
+                      duration={2}
+                      redraw={true}
+                    >
+                      {({ countUpRef, start }) => (
+                        <VisibilitySensor onChange={start} delayedCall>
+                          <div>
+                            <h1 className="fw-bold" ref={countUpRef} />
+                          </div>
+                        </VisibilitySensor>
+                      )}
+                    </CountUp>
 
-                  <p className="card-text fw-bold">Lowest Measurement</p>
+                    <p className="card-text fw-bold">Lowest Measurement</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -331,6 +323,29 @@ function Home() {
           })
           .reverse()}
       </div>
+
+      {warning ? (
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Erro</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Filtragem inválida</Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                setShowModal(false);
+                setFormData({
+                  initialDate: "",
+                  finalDate: "",
+                });
+              }}
+            >
+              Ok
+            </button>
+          </Modal.Footer>
+        </Modal>
+      ) : null}
     </>
   );
 }

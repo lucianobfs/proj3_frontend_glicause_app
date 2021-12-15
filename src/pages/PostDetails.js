@@ -43,82 +43,84 @@ function PostDetails() {
   }, [id]);
 
   return (
-    <div className="container">
-      {loading ? (
-        <div
-          className="text-center d-flex justify-content-center align-items-end"
-          style={{ height: "300px" }}
-        >
-          <div className="spinner-border" role="status"></div>
-        </div>
-      ) : (
-        <div className="row">
-          <div className="text-center mt-5">
-            <p className="mb-5">Blog Post</p>
-            <h1 className="mb-5">{post.title}</h1>
-
-            <div className="align-items-center">
-              <img src={post.image} className="w-100 h" />
-            </div>
+    <>
+     
+      <div className="container">
+        {loading ? (
+          <div
+            className="text-center d-flex justify-content-center align-items-end"
+            style={{ height: "300px" }}
+          >
+            <div className="spinner-border" role="status"></div>
           </div>
+        ) : (
+          <div className="row mt-5">
+            <div className="text-center mt-5">
+              <h1 className="mb-5">{post.title}</h1>
 
-          <div className="col-md-2 mt-5 ms-2">
-            <div>
-              <FaFacebookSquare
-                color="#0A83ED"
-                size="50px"
-                className="mb-3 me-1"
-              />
-              <FaTwitterSquare
-                color="#00ACEE"
-                size="50px"
-                className="mb-3 me-1"
-              />
-              <FaInstagram color="#C32AA3" size="50px" className="mb-3" />{" "}
-            </div>
-
-            <div>
-              <p>
-                <span> Written by Admin</span>
-              </p>
-            </div>
-
-            {loggedInUser.user.role === "ADMIN" ? (
-              <div>
-              <Link to={`/EditPost/${post._id}`}>
-                <button type="button" className="btn btn-secondary me-1">
-                  Edit Post
-                </button>
-                </Link>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => setShowModal(true)}
-                >
-                  Delete
-                </button>
+              <div className="align-items-center">
+                <img src={post.image} className="w-100 h" />
               </div>
-            ) : null}
+            </div>
 
-            <ConfirmationModal
-              title="Tem certeza?"
-              variant="danger"
-              confirmationText="Deletar"
-              show={showModal}
-              handleClose={() => setShowModal(false)}
-              handleConfirmation={() => {
-                navigate(`/post/delete/${id}`);
-                setShowModal(false);
-              }}
-            >
-              Essa ação é irreversível
-            </ConfirmationModal>
+            <div className="col-md-2 mt-5 ">
+              <div>
+                <FaFacebookSquare
+                  color="#0A83ED"
+                  size="50px"
+                  className="mb-3 me-1"
+                />
+                <FaTwitterSquare
+                  color="#00ACEE"
+                  size="50px"
+                  className="mb-3 me-1"
+                />
+                <FaInstagram color="#C32AA3" size="50px" className="mb-3" />{" "}
+              </div>
+
+              <div>
+                <p>
+                  <span> Written by Admin</span>
+                </p>
+              </div>
+
+              {loggedInUser.user.role === "ADMIN" ? (
+                <div>
+                  <Link to={`/EditPost/${post._id}`}>
+                    <button type="button" className="btn btn-secondary me-1">
+                      Edit Post
+                    </button>
+                  </Link>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              ) : null}
+
+              <ConfirmationModal
+                title="Tem certeza?"
+                variant="danger"
+                confirmationText="Deletar"
+                show={showModal}
+                handleClose={() => setShowModal(false)}
+                handleConfirmation={() => {
+                  navigate(`/post/delete/${id}`);
+                  setShowModal(false);
+                }}
+              >
+                Essa ação é irreversível
+              </ConfirmationModal>
+            </div>
+
+            <div className="col-md-9 mt-5">{post.body}</div>
           </div>
-
-          <div className="col-md-9 mt-5">{post.body}</div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 

@@ -26,9 +26,10 @@
 }
 
 .corpo {
-    margin-top: -56px;
+    margin-top: -70px;
 }
 
 .teste {
     z-index: 99;
+    height: 70px;
 }

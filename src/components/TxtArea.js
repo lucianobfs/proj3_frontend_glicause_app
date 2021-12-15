@@ -5,6 +5,7 @@ function TxtArea(props) {
           {props.label}
         </label>
         <textarea
+        rows={props.rows}
           className="form-control mb-3"
           id={props.id}
           name={props.name}
