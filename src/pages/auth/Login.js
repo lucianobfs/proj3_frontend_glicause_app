@@ -401,6 +401,7 @@ function Login(props) {
                   href="https://instagram.com"
                   target="_blank"
                   className="text-decoration-none text-dark mx-2"
+                  rel="noreferrer"
                 >
                   <FaFacebookF color="#0A83ED" size="35px" />
                 </a>
@@ -408,6 +409,7 @@ function Login(props) {
                   href="https://instagram.com"
                   target="_blank"
                   className="text-decoration-none text-dark mx-2"
+                  rel="noreferrer"
                 >
                   <FaInstagram color="#C32AA3" size="35px" />
                 </a>
@@ -415,6 +417,7 @@ function Login(props) {
                   href="https://instagram.com"
                   target="_blank"
                   className="text-decoration-none text-dark mx-2"
+                  rel="noreferrer"
                 >
                   <FaTwitter color="#00ACEE" size="35px" />
                 </a>
