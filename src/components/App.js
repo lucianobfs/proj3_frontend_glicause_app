@@ -19,6 +19,7 @@ import GlucoseDetails from "../pages/GlucoseDetails";
 import { AuthContextComponent } from "../contexts/authContext";
 import GlucoseDelete from "../pages/GlucoseDelete";
 import EditPost from "../pages/EditPost";
+import NavTeste from "../components/NavTeste"
 
 // imports
 import Navbar from "./Navbar";
@@ -27,7 +28,8 @@ import Navbar from "./Navbar";
 function App() {
   return (
     <AuthContextComponent>
-      <Navbar />
+      {/* <Navbar /> */}
+      <NavTeste className="teste"/>
       <div className="corpo">
         <Routes>
           <Route path="/" element={<ProtectedRoute component={Home} />} />

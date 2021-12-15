@@ -105,7 +105,7 @@ function Home() {
         className=" d-flex align-items-center justify-content-center"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dzm8l29kq/image/upload/v1639529128/pictures/run-gea4cf08fe_1920_n2whzb.jpg)",
+            "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://res.cloudinary.com/dzm8l29kq/image/upload/v1639575964/pictures/teadsadasdf_tpeuwp.jpg)",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "relative",
