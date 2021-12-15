@@ -13,9 +13,9 @@ import CountUp, { useCountUp } from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
 
-import { FcSurvey } from "react-icons/fc";
-import { FcComboChart } from "react-icons/fc";
-import { FcApproval } from "react-icons/fc";
+import { FcElectricalSensor } from "react-icons/fc";
+import { FcBiotech } from "react-icons/fc";
+import { FcBiohazard } from "react-icons/fc";
 
 import { FaBookMedical } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
