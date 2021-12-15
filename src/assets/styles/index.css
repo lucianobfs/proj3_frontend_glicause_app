@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
 /* Seus estilos globais vão aqui */
 .hero-section {
     background: url("../images/hero-img.jpg") 100% no-repeat;

@@ -13,6 +13,7 @@ function NavTeste(props) {
   const { loggedInUser, logout } = useContext(AuthContext);
 
   return (
+    
     <Navbar
       expand={false}
       collapseOnSelect={true}
@@ -85,7 +86,7 @@ function NavTeste(props) {
                     </Nav.Link>{" "}
                   </Nav.Item>{" "}
                 </>
-              ) : (
+              ) : loggedInUser.user.role === "ADMIN" ? (
                 <Nav.Item>
                   {" "}
                   <Nav.Link
@@ -97,12 +98,13 @@ function NavTeste(props) {
                     Blog
                   </Nav.Link>{" "}
                 </Nav.Item>
-              )}
+              ): null}
             </Nav>
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
     </Navbar>
+    
   );
 }
 
