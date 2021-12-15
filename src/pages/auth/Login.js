@@ -25,6 +25,8 @@ import { FaTwitter } from "react-icons/fa";
 
 import Error from "../../components/Error";
 
+import Footer from "../../components/Footer";
+
 
 function Login(props) {
   const authContext = useContext(AuthContext);
@@ -97,17 +99,14 @@ function Login(props) {
           height: "100vh",
         }}
       >
-        <div class="container col-xl-10 col-xxl-8 px-4 py-5">
-          <div class="row align-items-center g-lg-5 py-5">
-            <div class="col-lg-7 text-center text-lg-start text-white">
-              <h1 class="display-4 fw-bold lh-1 mb-3">
-                Vertically centered hero sign-up form
+        <div className="container col-xl-10 col-xxl-8 px-4 py-5">
+          <div className="row align-items-center g-lg-5 py-5">
+            <div className="col-lg-7 text-center text-lg-start text-white">
+              <h1 className="display-4 fw-bold lh-1 mb-3">
+                The Best Way To Track Your Blood Glucose
               </h1>
-              <p class="col-lg-10 fs-4">
-                Below is an example form built entirely with Bootstrap’s form
-                controls. Each required form group has a validation state that
-                can be triggered by attempting to submit the form without
-                completing it.
+              <p className="col-lg-10 fs-4">
+                Gli Cause App is a platform made for diabetics to control their blood glucose measurements, and lead a healthier life
               </p>
             </div>
 
@@ -232,7 +231,7 @@ function Login(props) {
               <div className="card-body">
                 <CountUp
                   start={0}
-                  end={15226754}
+                  end={73564}
                   delay={0}
                   duration={4}
                   redraw={true}
@@ -259,7 +258,7 @@ function Login(props) {
               <div className="card-body">
                 <CountUp
                   start={0}
-                  end={15226754}
+                  end={29673068}
                   delay={0}
                   duration={4}
                   redraw={true}
@@ -286,7 +285,7 @@ function Login(props) {
               <div className="card-body">
                 <CountUp
                   start={0}
-                  end={15226754}
+                  end={137}
                   delay={0}
                   duration={4}
                   redraw={true}
@@ -377,7 +376,7 @@ function Login(props) {
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             position: "relative",
-            height: "calc(60vh - 56px)",
+            height: "calc(60vh)",
           }}
         >
           <div className="container text-white">
@@ -424,6 +423,7 @@ function Login(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
