@@ -11,9 +11,10 @@ import Accordion from 'react-bootstrap/Accordion'
 import CountUp, { useCountUp } from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
-import { FcBiohazard } from "react-icons/fc";
-import { FcBiotech } from "react-icons/fc";
-import { FcElectricalSensor } from "react-icons/fc";
+
+import { FcSurvey } from "react-icons/fc";
+import { FcComboChart } from "react-icons/fc";
+import { FcApproval } from "react-icons/fc";
 
 import { FaBookMedical } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
@@ -146,7 +147,7 @@ function Login(props) {
           <div className="col-md-10 mx-auto col-lg-5 mt-5 pt-5">
             <Accordion defaultActiveKey="" >
               <Accordion.Item eventKey="0" className="noselect" style={{ border: "none" }}>
-                <Accordion.Header><FcElectricalSensor size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step One 1#</h2>
+                <Accordion.Header><FcApproval size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step One 1#</h2>
                 </Accordion.Header>
                 <div className="">
                   <Accordion.Body>
@@ -161,7 +162,7 @@ function Login(props) {
                 </div>
               </Accordion.Item>
               <Accordion.Item eventKey="1" style={{ border: "none" }}>
-                <Accordion.Header><FcBiotech size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Two 2#</h2></Accordion.Header>
+                <Accordion.Header><FcComboChart size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Two 2#</h2></Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -173,7 +174,7 @@ function Login(props) {
                 </Accordion.Body>
               </Accordion.Item>
               <Accordion.Item eventKey="2" style={{ border: "none" }}>
-                <Accordion.Header><FcBiohazard size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Three 3#</h2></Accordion.Header>
+                <Accordion.Header><FcSurvey size="45px"/> <h2 className="mx-5 fw-bold" style={{ color: "#383838" }}>Step Three 3#</h2></Accordion.Header>
                 <Accordion.Body>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
