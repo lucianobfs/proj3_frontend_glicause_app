@@ -95,10 +95,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-{/* <NavLink
-  className={({ isActive }) => `nav-link  ${isActive ? "active" : ""}`}
-  to="/login"
->
-  Login
-</NavLink>; */}

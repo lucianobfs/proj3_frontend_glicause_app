@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../apis/api";
-import { MdAddAlarm } from "react-icons/md";
 
-import FormField from "../../components/FormField";
 import Error from "../../components/Error";
 
 function Signup(props) {
@@ -80,17 +78,6 @@ function Signup(props) {
               </label>
             </div>
 
-            {/* <FormField
-          float="form-floating"
-          label="Name"
-          id="signupFormName"
-          required
-          name="name"
-          onChange={handleChange}
-          value={userData.name}
-          readOnly={loading}
-        /> */}
-
             <div className="form-floating mb-3">
               <input
                 type="email"
@@ -104,18 +91,6 @@ function Signup(props) {
               />
               <label htmlFor="signupFormEmail">E-mail Address</label>
             </div>
-
-            {/* <FormField
-        float="form-floating"
-          type="email"
-          label="E-mail"
-          id="signupFormEmail"
-          required
-          name="email"
-          onChange={handleChange}
-          value={userData.email}
-          readOnly={loading}
-        /> */}
 
             <div className="form-floating mb-3">
               <input
@@ -134,19 +109,6 @@ function Signup(props) {
               </label>
             </div>
 
-            {/* <FormField
-        float="form-floating"
-          type="password"
-          label="Password"
-          id="signupFormPassword"
-          required
-          name="password"
-          onChange={handleChange}
-          value={userData.password}
-          pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
-          readOnly={loading}
-        /> */}
-
             <div className="form-floating mb-3">
               <input
                 type="password"
@@ -163,24 +125,12 @@ function Signup(props) {
               </label>
             </div>
 
-            {/* <FormField
-        float="form-floating"
-          type="password"
-          label="Confirme your Password"
-          id="signupFormConfirmPassword"
-          required
-          name="confirmPassword"
-          onChange={handleChange}
-          value={userData.confirmPassword}
-          readOnly={loading}
-        /> */}
-
             <div className="mb-3">
               <button
                 disabled={loading}
                 type="submit"
                 className="btn btn-primary w-100"
-                style={{height: "48px"}}
+                style={{ height: "48px" }}
               >
                 {loading ? (
                   <span

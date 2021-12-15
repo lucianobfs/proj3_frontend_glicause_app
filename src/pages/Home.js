@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 
 // imports
-import hero from "../assets/images/hero-img.jpg";
+
 import Button from "@restart/ui/esm/Button";
 import api from "../apis/api";
 import Graph from "../components/Graph";
-import CountUp, { useCountUp } from "react-countup";
+import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 import { FaFileMedicalAlt } from "react-icons/fa";
 import { FaSyringe } from "react-icons/fa";
@@ -87,9 +87,9 @@ function Home() {
       }, 0);
   }
 
-  let sortedArr = glucoseList.sort((a, b) => {
-    return new Date(b.date) - new Date(a.date);
-  });
+  // let sortedArr = glucoseList.sort((a, b) => {
+  //   return new Date(b.date) - new Date(a.date);
+  // });
 
   console.log(glucoFunction());
 
@@ -185,7 +185,7 @@ function Home() {
                       {({ countUpRef, start }) => (
                         <VisibilitySensor onChange={start} delayedCall>
                           <div>
-                            <h1 className="fw-bold" ref={countUpRef} />
+                            <h1 className="fw-bold" ref={countUpRef} > </h1>
                           </div>
                         </VisibilitySensor>
                       )}
@@ -213,7 +213,7 @@ function Home() {
                       {({ countUpRef, start }) => (
                         <VisibilitySensor onChange={start} delayedCall>
                           <div>
-                            <h1 className="fw-bold" ref={countUpRef} />
+                            <h1 className="fw-bold" ref={countUpRef} > </h1>
                           </div>
                         </VisibilitySensor>
                       )}
@@ -245,7 +245,7 @@ function Home() {
                       {({ countUpRef, start }) => (
                         <VisibilitySensor onChange={start} delayedCall>
                           <div>
-                            <h1 className="fw-bold" ref={countUpRef} />
+                            <h1 className="fw-bold" ref={countUpRef} > </h1>
                           </div>
                         </VisibilitySensor>
                       )}
@@ -275,7 +275,7 @@ function Home() {
                       {({ countUpRef, start }) => (
                         <VisibilitySensor onChange={start} delayedCall>
                           <div>
-                            <h1 className="fw-bold" ref={countUpRef} />
+                            <h1 className="fw-bold" ref={countUpRef}> </h1>
                           </div>
                         </VisibilitySensor>
                       )}

@@ -1,12 +1,10 @@
 import { useState } from "react";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import FormField from "../components/FormField";
 
 import TxtArea from "../components/TxtArea";
-
-import MDEditor from "@uiw/react-md-editor";
 
 import api from "../apis/api";
 // import MyEditor from "../components/MyEditor";
@@ -64,6 +62,8 @@ function PostCreate() {
         image,
       });
 
+      console.log(response);
+
       setLoading(false);
       navigate("/blog");
     } catch (err) {
@@ -86,10 +86,10 @@ function PostCreate() {
         }}
       >
         <div className="hero-text text-white text-center">
-          <h2 style={{ fontSize: "4rem", marginBottom: "75px" }}>Create a Blog Post</h2>
-          <p style={{ fontSize: "1.8rem" }}>
-            Fill the Fields Below
-          </p>
+          <h2 style={{ fontSize: "4rem", marginBottom: "75px" }}>
+            Create a Blog Post
+          </h2>
+          <p style={{ fontSize: "1.8rem" }}>Fill the Fields Below</p>
         </div>
       </div>
 
@@ -125,17 +125,6 @@ function PostCreate() {
             required
             readOnly={loading}
           />
-
-          {/* <FormField
-        type="text-area"
-          label="Post Body"
-          id="postFormBody"
-          name="body"
-          onChange={handleChange}
-          value={postData.body}
-          required
-          readOnly={loading}
-        /> */}
 
           <div className="mb-3 text-right">
             <button

@@ -6,10 +6,10 @@ import location from "../../assets/images/sv.jpg";
 
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Carousel from "react-bootstrap/Carousel";
+
 
 import Accordion from "react-bootstrap/Accordion";
-import CountUp, { useCountUp } from "react-countup";
+import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
 
 import { FcElectricalSensor } from "react-icons/fc";
@@ -239,7 +239,7 @@ function Login(props) {
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                       <div>
-                        <h1 className="fw-bold" ref={countUpRef} />
+                        <h1 className="fw-bold" ref={countUpRef} > </h1>
                       </div>
                     </VisibilitySensor>
                   )}
@@ -266,7 +266,7 @@ function Login(props) {
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                       <div>
-                        <h1 className="fw-bold" ref={countUpRef} />
+                        <h1 className="fw-bold" ref={countUpRef} > </h1>
                       </div>
                     </VisibilitySensor>
                   )}
@@ -293,7 +293,7 @@ function Login(props) {
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                       <div>
-                        <h1 className="fw-bold" ref={countUpRef} />
+                        <h1 className="fw-bold" ref={countUpRef} > </h1>
                       </div>
                     </VisibilitySensor>
                   )}
@@ -322,6 +322,7 @@ function Login(props) {
               <img
                 src="https://res.cloudinary.com/dzm8l29kq/image/upload/v1639521475/pictures/1_mhyuxu.jpg"
                 className="rounded-circle img-fluid"
+                alt="testimonial"
               />
             </div>
             <div className="card-body">
@@ -338,6 +339,7 @@ function Login(props) {
               <img
                 src="https://res.cloudinary.com/dzm8l29kq/image/upload/v1639521543/pictures/2_duhxah.jpg"
                 className="rounded-circle img-fluid"
+                alt="testimonial"
               />
             </div>
             <div className="card-body">
@@ -354,6 +356,7 @@ function Login(props) {
               <img
                 src="https://res.cloudinary.com/dzm8l29kq/image/upload/v1639521571/pictures/3_pdk4vz.jpg"
                 className="rounded-circle img-fluid"
+                alt="testimonial"
               />
             </div>
             <div className="card-body">

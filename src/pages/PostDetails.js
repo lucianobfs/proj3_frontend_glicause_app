@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaTwitterSquare } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
-import { NavItem } from "react-bootstrap";
+
 
 import { AuthContext } from "../contexts/authContext";
 
@@ -60,7 +60,7 @@ function PostDetails() {
               <h1 className="mb-5">{post.title}</h1>
 
               <div className="align-items-center">
-                <img src={post.image} className="w-100 h" />
+                <img src={post.image} className="w-100 h" alt={post.name}/>
               </div>
             </div>
 

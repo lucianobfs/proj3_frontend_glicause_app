@@ -2,7 +2,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { Link, Routes, Route, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdAddAlarm } from "react-icons/md";
 
 import { useContext } from "react";

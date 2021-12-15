@@ -22,13 +22,12 @@ import EditPost from "../pages/EditPost";
 import NavTeste from "../components/NavTeste"
 
 // imports
-import Navbar from "./Navbar";
-// import { Nav } from "react-bootstrap";
+
 
 function App() {
   return (
     <AuthContextComponent>
-      {/* <Navbar /> */}
+      
       <NavTeste className="teste"/>
       <div className="corpo">
         <Routes>
