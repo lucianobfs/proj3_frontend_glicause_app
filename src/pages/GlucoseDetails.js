@@ -84,7 +84,7 @@ function GlucoseDetails() {
       </div>
 
       <ConfirmationModal
-        title="Tem certeza?"
+        title="Are you sure?"
         variant="danger"
         confirmationText="Deletar"
         show={showModal}
@@ -94,7 +94,7 @@ function GlucoseDetails() {
           setShowModal(false);
         }}
       >
-        Essa ação é irreversível
+        This action is irreversible
       </ConfirmationModal>
     </>
   );
