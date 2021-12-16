@@ -55,7 +55,7 @@ function AddGlucose() {
       >
         <div className="hero-text text-white text-center">
           <div className="container container-fluid">
-            <h2 style={{ fontSize: "3.5rem", marginBottom: "75px" }}>
+            <h2 style={{ fontSize: "3rem", marginBottom: "75px" }}>
               Add a glucose measurement
             </h2>
             <p style={{ fontSize: "1.8rem" }}>
