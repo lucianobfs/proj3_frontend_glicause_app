@@ -34,7 +34,7 @@ function Signup(props) {
       setError(null);
 
       const response = await api.post(
-        "http://localhost:4000/api/signup",
+        "/signup",
         userData
       );
 
