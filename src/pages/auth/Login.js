@@ -7,7 +7,6 @@ import location from "../../assets/images/sv.jpg";
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
 import Accordion from "react-bootstrap/Accordion";
 import CountUp from "react-countup";
 import VisibilitySensor from "react-visibility-sensor";
@@ -27,7 +26,6 @@ import Error from "../../components/Error";
 
 import Footer from "../../components/Footer";
 
-
 function Login(props) {
   const authContext = useContext(AuthContext);
 
@@ -39,7 +37,7 @@ function Login(props) {
   //   password: null,
   // });
 
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
   const navigate = useNavigate();
 
@@ -58,7 +56,7 @@ function Login(props) {
       //   password: null,
       // });
 
-      setError(null)
+      setError(null);
 
       const response = await api.post("/login", state);
       console.log(response);
@@ -81,14 +79,12 @@ function Login(props) {
     } catch (err) {
       console.error(err.response);
       // setErrors({ ...err.response.data.errors }); -> descomentar dps
-      setError(true)
-      
+      setError(true);
     }
   }
 
   return (
     <>
-
       <div
         className="hero-image d-flex align-items-center justify-content-center"
         style={{
@@ -99,14 +95,15 @@ function Login(props) {
           height: "100vh",
         }}
       >
-        <div className="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div className="container col-xl-10 col-xxl-8 px-4 py-5 teste2">
           <div className="row align-items-center g-lg-5 py-5">
             <div className="col-lg-7 text-center text-lg-start text-white">
               <h1 className="display-4 fw-bold lh-1 mb-3">
                 The Best Way To Track Your Blood Glucose
               </h1>
               <p className="col-lg-10 fs-4">
-                Gli Cause App is a platform made for diabetics to control their blood glucose measurements, and lead a healthier life
+                Gli Cause App is a platform made for diabetics to control their
+                blood glucose measurements, and lead a healthier life
               </p>
             </div>
 
@@ -239,7 +236,9 @@ function Login(props) {
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                       <div>
-                        <h1 className="fw-bold" ref={countUpRef} > </h1>
+                        <h1 className="fw-bold" ref={countUpRef}>
+                          {" "}
+                        </h1>
                       </div>
                     </VisibilitySensor>
                   )}
@@ -266,7 +265,9 @@ function Login(props) {
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                       <div>
-                        <h1 className="fw-bold" ref={countUpRef} > </h1>
+                        <h1 className="fw-bold" ref={countUpRef}>
+                          {" "}
+                        </h1>
                       </div>
                     </VisibilitySensor>
                   )}
@@ -293,7 +294,9 @@ function Login(props) {
                   {({ countUpRef, start }) => (
                     <VisibilitySensor onChange={start} delayedCall>
                       <div>
-                        <h1 className="fw-bold" ref={countUpRef} > </h1>
+                        <h1 className="fw-bold" ref={countUpRef}>
+                          {" "}
+                        </h1>
                       </div>
                     </VisibilitySensor>
                   )}
