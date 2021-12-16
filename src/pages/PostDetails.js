@@ -103,7 +103,7 @@ function PostDetails() {
               ) : null}
 
               <ConfirmationModal
-                title="Tem certeza?"
+                title="Are you sure?"
                 variant="danger"
                 confirmationText="Deletar"
                 show={showModal}
@@ -113,7 +113,7 @@ function PostDetails() {
                   setShowModal(false);
                 }}
               >
-                Essa ação é irreversível
+                This action is irreversible
               </ConfirmationModal>
             </div>
 
